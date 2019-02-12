@@ -1,0 +1,222 @@
+/* CSS stylesheet used by form.html  */
+/*------------------------------------------------*/
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+/*------------------------------------------------*/
+
+body{
+  background-color:white;
+  }
+
+form{
+    margin: 100px;
+    width: auto;
+    border: 1px solid black;
+    text-align: center;
+}
+
+select{
+    margin: 10px;
+    font-size: 16px;
+}
+
+input{
+    margin: 10px;
+}
+
+button{
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 8px 12px;
+    text-size: 16px;
+    margin: 10px 20px;
+    /*cursor: pointer;*/
+}
+
+button:hover {
+    background-color: #7a3b2e;
+}
+
+p{
+  margin: 5px;
+  text-align: center;
+  font-family: "Helvetica", sans-serif;
+  font-size: 14pt;
+}
+
+
+
+
+.splash h1{
+  text-align: center;
+  padding: 80px;
+  border: 1px solid black;
+  margin: 0;
+  color: red;
+}
+
+.other-services{
+  height: auto;           /* Allow it to scale to fit the contents */
+  width: auto;
+  overflow: auto;         /* Float clear*/
+  display: block;
+  margin: 10px;
+  text-align: center;
+  border: 2px solid red;
+  background-color: #FFFF99;
+}
+
+.service{
+  display: inline-block;
+  vertical-align: top;
+  width: 300px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  background-color: #A2FFCC;  /* pale green */
+}
+
+.service h3{
+  background-color: teal;
+}
+
+.service img{
+  height: 100px;
+  width: 100px;
+  background-color: white;
+}
+
+.service p{
+  background-color: aqua;
+  border: 1px solid black;
+}
+
+.footer{
+  display: block;
+}
+
+
+h1{
+  margin-top: 40px;
+  font-size: 24pt;
+  text-align: center;
+}
+
+h2{
+  margin: 5px;
+  text-align: center;
+  font-family: "Calibri", sans-serif;
+  font-size: 16pt;
+}
+
+h3{
+  text-align: center;
+}
+
+
+
+
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Winky's Divinator</title>
+    <link rel="stylesheet" type="text/css" href="Winky_Style.css">
+
+  </head>
+
+
+  <body>
+    <div id="page heading">
+      <h1>Winky's Divinator</h1>
+    </div>
+    <form id="my form" name="parent form">
+
+      <select required id="class" name="class">
+        <option selected hidden disabled>Select Class</option>
+        <option value="Barbarian">Barbarian</option>
+        <option value="Fighter">Fighter</option>
+        <option value="Monk">Monk</option>
+        <option value="Paladin">Paladin</option>
+      </select>
+
+      <select required id="race" name="race">
+        <option selected hidden disabled>Select Race</option>
+        <option value="Human">Human</option>
+        <option value="Mountain Dwarf">Mountain Dwarf</option>
+        <option value="Hill Dwarf">Hill Dwarf</option>
+        <option value="2-4">C2 - Option 4</option>
+        <option value="2-5">C2 - Option 5</option>
+        <option value="2-6">C2 - Option 6</option>
+        <option value="2-7">C2 - Option 7</option>
+        <option value="2-8">C2 - Option 8</option>
+        <option value="2-9">C2 - Option 9</option>
+        <option value="2-10">C2 - Option 10</option>
+        <option value="2-11">C2 - Option 14</option>
+      </select>
+
+      <input required
+        type="number"
+        value = 1
+        min=0
+        max=20
+        step=1
+        >
+
+      <select required id="armor" name="armor">
+        <option selected hidden disabled>Select Armor</option>
+        <option value="None">None</option>
+        <option value="Leather">Leather</option>
+        <option value="Chainmail">Chainmail</option>
+        <option value="Full Plate">Full Plate</option>
+      </select>
+
+      <select required id="weapon" name="weapon">
+        <option selected hidden disabled>Select Class</option>
+        <option value="None">None</option>
+        <option value="Longsword">Longsword</option>
+        <option value="Greatsword">Greatsword</option>
+        <option value="Greataxe">Greataxe</option>
+      </select>
+
+      <button id="submitButton" type="button">Submit</button>
+      <button id="resetButton">Reset</button>
+    
+
+    
+    </form>
+
+    <p id="classInfo">  <!-- Added by JavaScript based on class choice. --> 
+    <p id="raceInfo">  <!-- Added by JavaScript based on race choice. --> 
+
+    <script src="character_creation.js"></script>
+  </body>
+</html>
