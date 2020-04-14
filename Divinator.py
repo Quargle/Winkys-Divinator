@@ -10,17 +10,17 @@ def home():
 
 @app.route("/duel")
 def duel():
-    return render_template("home.html")
+    return render_template("duel.html")
 
 
 @app.route("/thousand_duels")
 def thousand_duels():
-    return render_template("home.html")
+    return render_template("thousand.html")
 
 
 @app.route("/goblins")
 def goblins():
-    return render_template("home.html")
+    return render_template("goblins.html")
 
 
 if __name__ == "__main__":
