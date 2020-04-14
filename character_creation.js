@@ -1,5 +1,5 @@
 
-
+/* This file contains functions that are used when creating a character on Winky's Divinator  */
 
 
 document.getElementById("class").addEventListener("change", classDescription);    // detects class choice & calls classDescritpion()
@@ -35,7 +35,7 @@ The type of element to be created is specified using the elementTag argument.
 The new elements ID is specified using ths elementId argument. 
 Lastly, the innerHTML of the new element is specified using the html argument.
 */
-
+/* LEGACY CODE - PROBABLY NEVER REQUIRED.
 function addChoice3() {
 
     // remove any previous version of this element you want to create
@@ -58,7 +58,7 @@ function addChoice3() {
     //newElement.innerHTML = html;
     newElementParent.appendChild(newElement);
 };
-
+*/
 
 function removeElement(elementId) {
     // Removes an element from the document
