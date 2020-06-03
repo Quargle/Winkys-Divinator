@@ -11,4 +11,19 @@ body {
         left: 0;
         text-align: center;
     }
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#results {
+        border: 2px solid black;
+    }
+
+#heading {
+    padding: 20px;
 }

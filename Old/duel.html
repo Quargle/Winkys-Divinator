@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% set active_page = 'duel' %}
+
+{% block title %}
+    <title>Duel</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>This is a placeholder for the Duel Page</h1>
+    <div id="form">
+        <form method="POST" action="{{ url_for('new_item') }}">
+            <div id="char1">
+                <h2>Character 1</h2>
+                <label for="p1_class">Class:</label>
+                <select id="p1_class">
+                    <option value="Fighter">Fighter</option>
+                    <option value="Barbarian">Barbarian</option>
+                </select>
+                <label for="p1_race">Race:</label>
+                <select id="p1_race">
+                    <option value="Human">Human</option>
+                    <option value="Dragonborn">Dragonborn</option>
+                    <option value="Gnome">Gnome</option>
+                    <option value="Half-Orc">Half-Orc</option>
+                    <option value="Halfling">Halfling</option>
+                    <option value="Hill Dwarf">Hill Dwarf</option>
+                    <option value="High Elf">High Elf</option>
+                    <option value="Tiefling">Tiefling</option>
+                </select>
+                <label for="p1_weapon">Weapon:</label>
+                <select id="p1_weapon">
+                    <option value="Longsword">Longsword</option>
+                    <option value="Greatsword">Greatsword</option>
+                    <option value="Rapier">Rapier</option>
+                </select>
+            </div>
+            <div id="char2">
+                <h2>Character 2</h2>
+                <label for="p2_class">Character Class:</label>
+                <select id="p2_class">
+                    <option value="Fighter">Fighter</option>
+                    <option value="Barbarian">Barbarian</option>
+                </select>
+                <label for="p2_race">Race:</label>
+                <select id="p2_race">
+                    <option value="Human">Human</option>
+                    <option value="Dragonborn">Dragonborn</option>
+                    <option value="Gnome">Gnome</option>
+                    <option value="Half-Orc">Half-Orc</option>
+                    <option value="Halfling">Halfling</option>
+                    <option value="Hill Dwarf">Hill Dwarf</option>
+                    <option value="High Elf">High Elf</option>
+                    <option value="Tiefling">Tiefling</option>
+                </select>
+                <label for="p2_weapon">Weapon:</label>
+                <select id="p2_weapon">
+                    <option value="Longsword">Longsword</option>
+                    <option value="Greatsword">Greatsword</option>
+                    <option value="Rapier">Rapier</option>
+                </select>
+            </div>
+            {{ form.submit(class="btn btn-primary form-control") }}
+        </form>
+    </div>
+
+</div>
+{% endblock %}

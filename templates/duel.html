@@ -6,7 +6,62 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>This is a placeholder for the Duel Page</h1>
+<div class="container">
+    <div id="heading">
+        <h1>Duel</h1>
+        <h2>A single Duel Between Two Characters</h2>
     </div>
+
+    <div id="form">
+        <form method="POST" action="{{ url_for('duel') }}">
+            <div class="row">
+            <div id="char1" class="col">
+                <h2>Character 1</h2>
+                 <div class="form-group">
+                {{ form.char1_name.label }}
+                {{ form.char1_name(class="form-control") }}
+                </div>
+                <div class="form-group">
+                {{ form.char1_class.label }}
+                {{ form.char1_class(class="form-control") }}
+                </div>
+                <div class="form-group">
+                {{ form.char1_race.label }}
+                {{ form.char1_race(class="form-control") }}
+                </div>
+                <div class="form-group">
+                {{ form.char1_weapon.label }}
+                {{ form.char1_weapon(class="form-control") }}
+                </div>
+            </div>
+
+            <div id="results" class="col-6">
+                <h1>Results Go Here</h1>
+            </div>
+
+            <div id="char2" class="col">
+                <h2>Character 2</h2>
+                <div class="form-group">
+                {{ form.char2_name.label }}
+                {{ form.char2_name(class="form-control") }}
+                </div>
+                <div class="form-group">
+                {{ form.char2_class.label }}
+                {{ form.char2_class(class="form-control") }}
+                </div>
+                <div class="form-group">
+                {{ form.char2_race.label }}
+                {{ form.char2_race(class="form-control") }}
+                </div>
+                <div class="form-group">
+                {{ form.char2_weapon.label }}
+                {{ form.char2_weapon(class="form-control") }}
+                </div>
+            </div>
+            {{ form.submit(class="btn btn-primary form-control") }}
+        </div>
+        </form>
+    </div>
+
+</div>
 {% endblock %}
