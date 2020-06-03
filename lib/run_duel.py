@@ -8,7 +8,7 @@
 def main(character_1, character_2):
     print(character_1)
     print(character_2)
-
+    #TODO: create character objects
 
 
 

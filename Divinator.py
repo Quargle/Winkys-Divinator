@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-from lib import run_duel
+from lib import run_duel, character
 from forms import DuelForm
+
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secretkey"
@@ -15,7 +16,6 @@ def home():
 def duel():
 
     form = DuelForm()
-
     if request.method == "POST":
         # Character 1
         char1 = {}

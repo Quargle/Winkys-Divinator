@@ -35,9 +35,13 @@ Features not yet considered are:
     Divine smite should not be subject to resistance from Barbarian's Rage - it is radiant damage
 """
 
+# Standard Library imports
 import random
-import var
 import math
+# local imports
+from . import var
+
+
 
 class Character:
     def __init__(self, name, race, DnD_class, level, weapon, armor, strength, dexterity, constitution, equipment, features):

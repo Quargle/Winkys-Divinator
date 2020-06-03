@@ -46,4 +46,4 @@ class DuelForm(FlaskForm):
         "Rapier"
         ])
 
-    submit = SubmitField("Submit")
+    submit = SubmitField("Begin")

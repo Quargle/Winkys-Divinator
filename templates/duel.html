@@ -35,8 +35,8 @@
                 </div>
             </div>
 
-            <div id="results" class="col-6">
-                <h1>Results Go Here</h1>
+            <div id="duel_submit" class="col-4">
+                {{ form.submit(class="btn btn-primary form-control tall_button") }}
             </div>
 
             <div id="char2" class="col">
@@ -58,10 +58,14 @@
                 {{ form.char2_weapon(class="form-control") }}
                 </div>
             </div>
-            {{ form.submit(class="btn btn-primary form-control") }}
         </div>
         </form>
     </div>
+
+    <div id="results">
+        <h1>Results Go Here</h1>
+    </div>
+
 
 </div>
 {% endblock %}
