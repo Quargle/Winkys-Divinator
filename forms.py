@@ -23,10 +23,54 @@ class DuelForm(FlaskForm):
         "Tiefling",
         ])
     char1_weapon = SelectField("Weapon", choices=[
-        "Longsword",
+        "Club",
+        "Dagger",
+        "Greatclub",
+        "Handaxe",
+        "Javelin",
+        "Light Hammer",
+        "Mace",
+        "Quarterstaff",
+        "Sickle",
+        "Spear",
+        "Battleaxe",
+        "Flail",
+        "Glaive",
+        "Greataxe",
         "Greatsword",
-        "Rapier"
-        ])
+        "Halberd",
+        "Lance",
+        "Longsword",
+        "Maul",
+        "Morningstar",
+        "Pike",
+        "Rapier",
+        "Scimitar",
+        "Shortsword",
+        "Trident",
+        "War Pick",
+        "Warhammer",
+        "Whip",
+        "Unarmed_Strike",
+        ],
+        default="Longsword"
+        )
+    char1_armor = SelectField("Armor", choices=[
+        "No Armor",
+        "Padded",
+        "Leather",
+        "Studded Leather",
+        "Hide",
+        "Chain Shirt",
+        "Scale Mail",
+        "Breastplate",
+        "Half Plate",
+        "Ring Mail",
+        "Chain Mail",
+        "Split",
+        "Plate",
+        ],
+         default="No Armor")
 
     char2_name = StringField("Name", default="Character 2")
     char2_class = SelectField("Class", choices=[
@@ -47,9 +91,53 @@ class DuelForm(FlaskForm):
         "Tiefling",
         ])
     char2_weapon = SelectField("Weapon", choices=[
-        "Longsword",
+        "Club",
+        "Dagger",
+        "Greatclub",
+        "Handaxe",
+        "Javelin",
+        "Light Hammer",
+        "Mace",
+        "Quarterstaff",
+        "Sickle",
+        "Spear",
+        "Battleaxe",
+        "Flail",
+        "Glaive",
+        "Greataxe",
         "Greatsword",
-        "Rapier"
-        ])
+        "Halberd",
+        "Lance",
+        "Longsword",
+        "Maul",
+        "Morningstar",
+        "Pike",
+        "Rapier",
+        "Scimitar",
+        "Shortsword",
+        "Trident",
+        "War Pick",
+        "Warhammer",
+        "Whip",
+        "Unarmed_Strike",
+        ],
+        default="Longsword"
+        )
+    char2_armor = SelectField("Armor", choices=[
+        "No Armor",
+        "Padded",
+        "Leather",
+        "Studded Leather",
+        "Hide",
+        "Chain Shirt",
+        "Scale Mail",
+        "Breastplate",
+        "Half Plate",
+        "Ring Mail",
+        "Chain Mail",
+        "Split",
+        "Plate",
+        ],
+        default="No Armor")
 
     submit = SubmitField("Begin")

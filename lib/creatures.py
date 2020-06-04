@@ -3,7 +3,7 @@
 import math
 #Local imports
 from .roll import d4, d6, d8, d10, d12, d20
-
+from . import armor, weapons
 
 class Creature:
     def __init__(self, **kwargs):
@@ -30,11 +30,14 @@ class Character(Creature):
         super().__init__(**kwargs)
         self.name = kwargs['name']
         self.level = int(kwargs['level'])
+        self.armor = armor.armor_dict[kwargs['armor']]
+        self.weapon = weapons.weapon_dict[kwargs['weapon']]
+        self.AC = self.set_AC()
         self.proficiency_bonus = self.set_proficiency_bonus()
 
     def set_AC(self):
         """ This method can be overriden by a subclass method where necessary"""
-        pass
+        return (self.armor.base_AC + min(self.dex_mod, self.armor.max_dex_bonus))
 
     def set_proficiency_bonus(self):
         if self.level < 5:
@@ -59,11 +62,12 @@ class Fighter(Character):
     def __repr__(self):
         return f"""
                     {self.name} is a Level {self.level} Fighter.
+                    Armor: {self.armor.name}
                     Strength: {self.str}
                     Dexterity: {self.dex}
                     Constitution: {self.con}
                 """
-
+# TODO: Add fighting styles
 
 
 class Barbarian(Character):
@@ -72,7 +76,17 @@ class Barbarian(Character):
         self.max_HP = 12 + self.con + ((4 + self.con) * (self.level - 1))
         self.features.append("Rage")
         self.features.append("Unarmored Defense")
+        if self.level >= 2:
+            self.features.append("Reckless Attack")
+            self.features.append("Danger Sense")
+        if self.level >= 3:
+            self.features.append("Frenzy")
 
+    def set_AC(self):
+        if self.armor.name == "Unarmored":
+            return (10 + self.dex_mod + self.con_mod)
+        else:
+            return super().set_AC()
 
     def __repr__(self):
         return f"""

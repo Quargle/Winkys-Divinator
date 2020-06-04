@@ -18,10 +18,16 @@ def create_duellists(form):
     char1 = char_class[form.char1_class.data](
             name=form.char1_name.data,
             level=form.char1_level.data,
+            race=form.char1_race.data,
+            weapon=form.char1_weapon.data,
+            armor=form.char1_armor.data,
         )
     char2 = char_class[form.char2_class.data](
             name=form.char2_name.data,
             level=form.char2_level.data,
+            race=form.char2_race.data,
+            weapon=form.char2_weapon.data,
+            armor=form.char2_armor.data,
         )
     return char1, char2
 

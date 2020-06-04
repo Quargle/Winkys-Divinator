@@ -18,7 +18,23 @@ class Armor:
         print("Name: {}  Base AC: {}  Max Dexterity Bonus: ".format(self.name, self.base_AC, self.max_dex_bonus))
 
 
-Unarmored = Armor("no armor", 10, "Light")
+armor_dict = {
+    "No Armor": Armor("Unarmored", 10, "Light"),
+    "Padded": Armor("Padded", 11, "Light"),
+    "Leather": Armor("Leather", 11, "Light"),
+    "Studded_Leather": Armor("Studded Leather", 12, "Light"),
+    "Hide": Armor("Hide", 12, "Medium"),
+    "Chain Shirt": Armor("Chain Shirt", 13, "Medium"),
+    "Scale Mail": Armor("Scale Mail", 14, "Medium"),
+    "Breastplate": Armor("Breastplate", 14, "Medium"),
+    "Half Plate": Armor("Half_Plate", 15, "Medium"),
+    "Chain Mail": Armor("Chain Mail", 16, "Heavy"),
+    "Splint": Armor("Splint", 17, "Heavy"),
+    "Full_Plate": Armor("Full Plate", 18, "Heavy"),
+}
+
+Unarmored = Armor("No Armor", 10, "Light")
+Padded = Armor("Padded", 11, "Light")
 Leather = Armor("Leather", 11, "Light")
 Studded_Leather = Armor("Studded Leather", 12, "Light")
 
