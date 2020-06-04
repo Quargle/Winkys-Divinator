@@ -7,7 +7,7 @@
 # Initialises Characters for DND Duels
 #********************************************************************************
 
-from .character import Character, Barbarian, Fighter
+from Old.character import Barbarian, Fighter
 from .weapons import *
 from.armor import *
 

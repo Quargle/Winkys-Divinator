@@ -4,10 +4,13 @@ from wtforms import SelectField, StringField, SubmitField
 
 
 class DuelForm(FlaskForm):
-    char1_name = StringField("Name")
+    char1_name = StringField("Name", default="Character 1")
     char1_class = SelectField("Class", choices=[
         "Fighter",
         "Barbarian",
+        ])
+    char1_level = SelectField("Level", choices=[
+        1, 2, 3,
         ])
     char1_race = SelectField("Race", choices=[
         "Human",
@@ -25,10 +28,13 @@ class DuelForm(FlaskForm):
         "Rapier"
         ])
 
-    char2_name = StringField("Name")
+    char2_name = StringField("Name", default="Character 2")
     char2_class = SelectField("Class", choices=[
         "Fighter",
         "Barbarian",
+        ])
+    char2_level = SelectField("Level", choices=[
+        1, 2, 3,
         ])
     char2_race = SelectField("Race", choices=[
         "Human",

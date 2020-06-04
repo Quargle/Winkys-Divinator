@@ -39,7 +39,7 @@ Features not yet considered are:
 import random
 import math
 # local imports
-from . import var
+from lib import var
 
 
 

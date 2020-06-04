@@ -15,15 +15,21 @@
     <div id="form">
         <form method="POST" action="{{ url_for('duel') }}">
             <div class="row">
-            <div id="char1" class="col">
+            <div id="char1" class="col-4">
                 <h2>Character 1</h2>
                  <div class="form-group">
                 {{ form.char1_name.label }}
                 {{ form.char1_name(class="form-control") }}
                 </div>
-                <div class="form-group">
+                <div class="row form-group mb-0">
+                <div class="form-group col-8">
                 {{ form.char1_class.label }}
                 {{ form.char1_class(class="form-control") }}
+                </div>
+                <div class="form-group col-4">
+                {{ form.char1_level.label }}
+                {{ form.char1_level(class="form-control") }}
+                </div>
                 </div>
                 <div class="form-group">
                 {{ form.char1_race.label }}
@@ -39,15 +45,21 @@
                 {{ form.submit(class="btn btn-primary form-control tall_button") }}
             </div>
 
-            <div id="char2" class="col">
+            <div id="char2" class="col-4">
                 <h2>Character 2</h2>
                 <div class="form-group">
                 {{ form.char2_name.label }}
                 {{ form.char2_name(class="form-control") }}
                 </div>
-                <div class="form-group">
+                <div class="row form-group mb-0">
+                <div class="form-group col-8">
                 {{ form.char2_class.label }}
                 {{ form.char2_class(class="form-control") }}
+                </div>
+                <div class="form-group col-4">
+                {{ form.char2_level.label }}
+                {{ form.char2_level(class="form-control") }}
+                </div>
                 </div>
                 <div class="form-group">
                 {{ form.char2_race.label }}
@@ -62,10 +74,14 @@
         </form>
     </div>
 
+    {% if method=="POST" %}
     <div id="results">
-        <h1>Results Go Here</h1>
+        <h1>Results Will Go Here</h1>
+        {% for line in output %}
+        <p>{{ line }}</p>
+        {% endfor %}
     </div>
-
+    {% endif %}
 
 </div>
 {% endblock %}
