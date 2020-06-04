@@ -18,12 +18,19 @@ def duel():
     form = DuelForm()
     if request.method == "POST":
         # call duel
-        run_duel.main(form)
+        char1, char2 = run_duel.main(form)
+        return render_template(
+            "duel.html",
+            form=form,
+            method=request.method,
+            char1=char1,
+            char2=char2,
+        )
     return render_template(
         "duel.html",
         form=form,
         method=request.method,
-        output=var.output)
+    )
 
 
 @app.route("/thousand_duels", methods=["GET", "POST"])

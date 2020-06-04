@@ -34,10 +34,10 @@ def create_duellists(form):
 
 def main(form):
     char1, char2 = create_duellists(form)
-    var.output = []
+    var.output = {}
     print(char1.__repr__())
-    var.output.append(char1.__repr__())
     print(char2.__repr__())
-    var.output.append(char2.__repr__())
+    print(char1.__class__.__name__)
+    return char1, char2
 
 

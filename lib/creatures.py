@@ -34,6 +34,9 @@ class Character(Creature):
         self.weapon = weapons.weapon_dict[kwargs['weapon']]
         self.AC = self.set_AC()
         self.proficiency_bonus = self.set_proficiency_bonus()
+        self.attack_bonus = self.set_attack_bonus()
+        self.damage_bonus = self.set_damage_bonus()
+
 
     def set_AC(self):
         """ This method can be overriden by a subclass method where necessary"""
@@ -52,20 +55,38 @@ class Character(Creature):
             proficiency_bonus = 6
         return proficiency_bonus
 
+    def set_attack_bonus(self):
+        if "Finesse" in self.weapon.properties:
+            ability_mod = max(self.str_mod, self.dex_mod)
+        else:
+            ability_mod = self.str_mod
+        return (ability_mod + self.proficiency_bonus)
+
+    def set_damage_bonus(self):
+        if "Finesse"  in self.weapon.properties:
+            damage_bonus = max(self.str_mod, self.dex_mod)
+        else:
+            damage_bonus = self.str_mod
+
 
 
 class Fighter(Character):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.max_HP = 10 + self.con + ((4 + self.con) * (self.level - 1))
+        self.max_HP = 10 + self.con_mod + ((4 + self.con_mod) * (self.level - 1))
+        self.fighting_style = "Duellist"
 
     def __repr__(self):
         return f"""
                     {self.name} is a Level {self.level} Fighter.
-                    Armor: {self.armor.name}
+                    Max HP: {self.max_HP}
                     Strength: {self.str}
                     Dexterity: {self.dex}
                     Constitution: {self.con}
+                    Armor: {self.armor.name}
+                    AC: {self.AC}
+                    Weapon: {self.weapon.name}  
+
                 """
 # TODO: Add fighting styles
 
@@ -73,7 +94,7 @@ class Fighter(Character):
 class Barbarian(Character):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.max_HP = 12 + self.con + ((4 + self.con) * (self.level - 1))
+        self.max_HP = 12 + self.con_mod + ((4 + self.con_mod) * (self.level - 1))
         self.features.append("Rage")
         self.features.append("Unarmored Defense")
         if self.level >= 2:
@@ -91,9 +112,14 @@ class Barbarian(Character):
     def __repr__(self):
         return f"""
                     {self.name} is a Level {self.level} Barbarian.
+                    Max HP: {self.max_HP}
                     Strength: {self.str}
                     Dexterity: {self.dex}
                     Constitution: {self.con}
+                    Armor: {self.armor.name}
+                    AC: {self.AC}
+                    Weapon: {self.weapon.name}
+
                 """
 
 
