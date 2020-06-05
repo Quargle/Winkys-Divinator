@@ -129,6 +129,7 @@
                     <p class="indent mb-0">Armor Class: {{char1.AC}}</p>
                     <p class="indent mb-0">Max HP: {{char1.max_HP}}</p>
                     <p class="indent mb-0">Weapon: {{char1.weapon.name}}</p>
+                    <p class="indent mb-0">Other Hand: {{char1.off_hand}}</p>
                     <p class="indent mb-0">Armor: {{char1.armor.name}}</p>
                 </div>
             </div>
@@ -138,13 +139,19 @@
                     <p class="indent mb-0">Armor Class: {{char2.AC}}</p>
                     <p class="indent mb-0">Max HP: {{char2.max_HP}}</p>
                     <p class="indent mb-0">Weapon: {{char2.weapon.name}}</p>
+                    <p class="indent mb-0">Other Hand: {{char2.off_hand}}</p>
                     <p class="indent mb-0">Armor: {{char2.armor.name}}</p>
                 </div>
             </div>
         </div>
         <h2>The Fight:</h2>
-        <div>
-            <p>Narrative to go here</p>
+        <div class="output">
+            {% for line in output %}
+            <p>{{ line }}</p>
+            {% if line == '' %}
+            <p>&nbsp;</p>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
     {% endif %}

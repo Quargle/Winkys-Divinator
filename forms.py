@@ -89,6 +89,6 @@ class CharacterForm(FlaskForm):
 class DuelForm(FlaskForm):
     char1 = FormField(CharacterForm)
     char2 = FormField(CharacterForm)
-    submit = SubmitField("Begin")
+    submit = SubmitField("Fight")
 
 

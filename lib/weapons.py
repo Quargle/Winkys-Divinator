@@ -1,14 +1,29 @@
 # -*- coding: utf-8 -*-
 
+from random import randint
+
+
 class Weapon:
-    def __init__(self, name, damage, type, properties):
+    def __init__(self, name, damage, damage_type, properties):
         self.name = name
         self.damage = damage
-        self.damage_type = type
+        self.damage_dice = int(self.damage.split('d')[0])
+        self.damage_die = int(self.damage.split('d')[1])
+
+        self.damage_type = damage_type
         self.properties = properties
 
     def describe(self):
         print("Name: {}  Damage: {}  Properties: ".format(self.name, self.damage, self.properties))
+
+    def roll_damage(self, crit=False):
+        rolls = []
+        dice = self.damage_dice
+        if crit:
+            dice *= 2
+        for _ in range(dice):
+            rolls.append(randint(1, self.damage_die))
+        return rolls
 
 
 weapon_dict = {

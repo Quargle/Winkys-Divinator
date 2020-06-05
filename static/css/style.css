@@ -39,6 +39,14 @@ h2 {
     margin-right: 25%;
 }
 
+.output {
+    padding-left: 25%;
+}
+
+.output p{
+    margin: 0px;
+}
+
 #results {
         border: 2px solid black;
         margin: 20px;

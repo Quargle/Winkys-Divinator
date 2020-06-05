@@ -33,6 +33,7 @@ def duel():
             method=request.method,
             char1=char1,
             char2=char2,
+            output=var.output,
         )
     return render_template(
         "duel.html",
