@@ -18,44 +18,48 @@
             <div id="char1" class="col-4">
                 <h2>Character 1</h2>
                 <div class="form-group">
-                    {{ form.char1_name.label }}
-                    {{ form.char1_name(class="form-control") }}
+                    {{ form.char1.char_name.label }}
+                    {{ form.char1.char_name(class="form-control") }}
                 </div>
                 <div class="row form-group mb-0">
                     <div class="form-group col-8">
-                        {{ form.char1_class.label }}
-                        {{ form.char1_class(class="form-control") }}
+                        {{ form.char1.char_class.label }}
+                        {{ form.char1.char_class(class="form-control") }}
                     </div>
                     <div class="form-group col-4">
-                        {{ form.char1_level.label }}
-                        {{ form.char1_level(class="form-control") }}
+                        {{ form.char1.level.label }}
+                        {{ form.char1.level(class="form-control") }}
                     </div>
                 </div>
                 <div class="form-group">
-                    {{ form.char1_race.label }}
-                    {{ form.char1_race(class="form-control") }}
+                    {{ form.char1.race.label }}
+                    {{ form.char1.race(class="form-control") }}
                 </div>
                 <div class="row form-group mb-0">
                     <div class="form-group col-4">
-                        {{ form.char1_str.label }}
-                        {{ form.char1_str(class="form-control") }}
+                        {{ form.char1.str.label }}
+                        {{ form.char1.str(class="form-control") }}
                     </div>
                     <div class="form-group col-4">
-                        {{ form.char1_dex.label }}
-                        {{ form.char1_dex(class="form-control") }}
+                        {{ form.char1.dex.label }}
+                        {{ form.char1.dex(class="form-control") }}
                     </div>
                     <div class="form-group col-4">
-                        {{ form.char1_con.label }}
-                        {{ form.char1_con(class="form-control") }}
+                        {{ form.char1.con.label }}
+                        {{ form.char1.con(class="form-control") }}
                     </div>
                 </div>
                 <div class="form-group">
-                    {{ form.char1_weapon.label }}
-                    {{ form.char1_weapon(class="form-control") }}
+                    {{ form.char1.weapon.label }}
+                    {{ form.char1.weapon(class="form-control") }}
                 </div>
                 <div class="form-group">
-                    {{ form.char1_armor.label }}
-                    {{ form.char1_armor(class="form-control") }}
+                    {{ form.char1.off_hand.label }}
+                    {{ form.char1.off_hand(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.char1.armor.label }}
+                    {{ form.char1.armor(class="form-control") }}
                 </div>
             </div>
 
@@ -66,44 +70,48 @@
             <div id="char2" class="col-4">
                 <h2>Character 2</h2>
                 <div class="form-group">
-                    {{ form.char2_name.label }}
-                    {{ form.char2_name(class="form-control") }}
+                    {{ form.char2.char_name.label }}
+                    {{ form.char2.char_name(class="form-control") }}
                 </div>
                 <div class="row form-group mb-0">
                     <div class="form-group col-8">
-                        {{ form.char2_class.label }}
-                        {{ form.char2_class(class="form-control") }}
+                        {{ form.char2.char_class.label }}
+                        {{ form.char2.char_class(class="form-control") }}
                     </div>
                     <div class="form-group col-4">
-                        {{ form.char2_level.label }}
-                        {{ form.char2_level(class="form-control") }}
+                        {{ form.char2.level.label }}
+                        {{ form.char2.level(class="form-control") }}
                     </div>
                 </div>
                 <div class="form-group">
-                    {{ form.char2_race.label }}
-                    {{ form.char2_race(class="form-control") }}
+                    {{ form.char2.race.label }}
+                    {{ form.char2.race(class="form-control") }}
                 </div>
                 <div class="row form-group mb-0">
                     <div class="form-group col-4">
-                        {{ form.char2_str.label }}
-                        {{ form.char2_str(class="form-control") }}
+                        {{ form.char2.str.label }}
+                        {{ form.char2.str(class="form-control") }}
                     </div>
                     <div class="form-group col-4">
-                        {{ form.char2_dex.label }}
-                        {{ form.char2_dex(class="form-control") }}
+                        {{ form.char2.dex.label }}
+                        {{ form.char2.dex(class="form-control") }}
                     </div>
                     <div class="form-group col-4">
-                        {{ form.char2_con.label }}
-                        {{ form.char2_con(class="form-control") }}
+                        {{ form.char2.con.label }}
+                        {{ form.char2.con(class="form-control") }}
                     </div>
                 </div>
                 <div class="form-group">
-                    {{ form.char2_weapon.label }}
-                    {{ form.char2_weapon(class="form-control") }}
+                    {{ form.char2.weapon.label }}
+                    {{ form.char2.weapon(class="form-control") }}
                 </div>
                 <div class="form-group">
-                    {{ form.char2_armor.label }}
-                    {{ form.char2_armor(class="form-control") }}
+                    {{ form.char2.off_hand.label }}
+                    {{ form.char2.off_hand(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.char2.armor.label }}
+                    {{ form.char2.armor(class="form-control") }}
                 </div>
             </div>
         </div>
@@ -115,19 +123,23 @@
         <h1 class="m-3">Results</h1>
         <h2>The Duellists:</h2>
         <div class="row">
-            <div class="col-6">
-                <p class="mb-0">{{char1.name}} is a Level {{char1.level}} {{char1.__class__.__name__}}:</p>
-                <p class="indent mb-0">Armor Class: {{char1.AC}}</p>
-                <p class="indent mb-0">Max HP: {{char1.max_HP}}</p>
-                <p class="indent mb-0">Weapon: {{char1.weapon.name}}</p>
-                <p class="indent mb-0">Armor: {{char1.armor.name}}</p>
+            <div class="container col-6">
+                <div class="character-info">
+                    <p class="mb-0">{{char1.name}} is a Level {{char1.level}} {{char1.__class__.__name__}}:</p>
+                    <p class="indent mb-0">Armor Class: {{char1.AC}}</p>
+                    <p class="indent mb-0">Max HP: {{char1.max_HP}}</p>
+                    <p class="indent mb-0">Weapon: {{char1.weapon.name}}</p>
+                    <p class="indent mb-0">Armor: {{char1.armor.name}}</p>
+                </div>
             </div>
-            <div class="col-6">
-                <p class="mb-0">{{char2.name}} is a Level {{char2.level}} {{char2.__class__.__name__}}:</p>
-                <p class="indent mb-0">Armor Class: {{char2.AC}}</p>
-                <p class="indent mb-0">Max HP: {{char2.max_HP}}</p>
-                <p class="indent mb-0">Weapon: {{char2.weapon.name}}</p>
-                <p class="indent mb-0">Armor: {{char2.armor.name}}</p>
+            <div class="container col-6">
+                <div class="character-info">
+                    <p class="mb-0">{{char2.name}} is a Level {{char2.level}} {{char2.__class__.__name__}}:</p>
+                    <p class="indent mb-0">Armor Class: {{char2.AC}}</p>
+                    <p class="indent mb-0">Max HP: {{char2.max_HP}}</p>
+                    <p class="indent mb-0">Weapon: {{char2.weapon.name}}</p>
+                    <p class="indent mb-0">Armor: {{char2.armor.name}}</p>
+                </div>
             </div>
         </div>
         <h2>The Fight:</h2>

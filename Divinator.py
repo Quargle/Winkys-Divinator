@@ -1,6 +1,10 @@
+
+# Standard Library Imports
+# Third Party Imports
 from flask import Flask, render_template, request
+# Local imports
 from lib import run_duel, var
-from forms import DuelForm
+import forms
 
 
 app = Flask(__name__)
@@ -15,7 +19,11 @@ def home():
 @app.route("/duel", methods=["GET", "POST"])
 def duel():
 
-    form = DuelForm()
+    form = forms.DuelForm()
+    # Kind of ugly way of setting name defaults
+    if request.method == "GET":
+        form.char1.char_name.data = "Character 1"
+        form.char2.char_name.data = "Character 2"
     if request.method == "POST":
         # call duel
         char1, char2 = run_duel.main(form)
@@ -52,4 +60,5 @@ def goblins():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    with app.app_context():
+        app.run(debug=True)
