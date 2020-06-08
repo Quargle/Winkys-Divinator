@@ -177,8 +177,6 @@ class Fighter(Character):
     def make_attack(self, target):
         var.output.append(f"{self.name} attacks {target.name} with their {self.weapon.name}.")
         attack_roll = self.make_attack_roll()
-        damage = 0
-        damage_type = None
         if attack_roll == "Crit Fail":
             var.output.append(f"{self.name} rolls a 1 on their attack roll, critically failing the attack, "
                               f"and doing no damage!")
@@ -198,8 +196,6 @@ class Fighter(Character):
     def make_off_hand_attack(self, target):
         var.output.append(f"{self.name} makes a bonus action attack against {target.name} with their {self.off_hand}.")
         attack_roll = self.make_attack_roll()
-        damage = 0
-        damage_type = None
         if attack_roll == "Crit Fail":
             var.output.append(f"{self.name} rolls a 1 on their attack roll, critically failing the attack, "
                               f"and doing no damage!")
@@ -244,7 +240,6 @@ class Fighter(Character):
             var.output.append(f"{self.name} rolls [{[x for x in rolls]}], "
                               f"for a total of {damage} {weapon.damage_type} damage.")
         return damage, weapon.damage_type
-
 
     def take_damage(self, damage, damage_type):
         if damage_type in self.invulnerabilities:
