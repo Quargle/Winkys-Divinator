@@ -60,6 +60,8 @@ class Character(Creature):
         self.armor = armor.armor_dict[kwargs['armor']]
         self.weapon = weapons.weapon_dict[kwargs['weapon']]
         self.off_hand = kwargs['off_hand']
+        if self.off_hand in var.weapons:
+            self.off_hand_weapon = weapons.weapon_dict[self.off_hand]
         self.AC = self.set_AC()
         self.proficiency_bonus = self.set_proficiency_bonus()
         self.attack_bonus = self.set_attack_bonus()
@@ -161,6 +163,8 @@ class Fighter(Character):
     def take_turn(self, target):
         var.output.append(f"{self.name} takes their turn...")
         self.make_attack_action(target)
+        if (self.off_hand in var.weapons) and (target.HP < 0):
+            self.make_off_hand_attack(target)
         var.output.append(f"End of {self.name}'s turn:")
         var.output.append(f"{self.name}: {self.HP}HP")
         var.output.append(f"{target.name}: {target.HP}HP")
@@ -180,12 +184,33 @@ class Fighter(Character):
                               f"and doing no damage!")
             return
         elif attack_roll == "Crit":
-            damage, damage_type = self.calculate_damage(crit=True)
+            damage, damage_type = self.calculate_damage(self.weapon, crit=True)
             var.output.append(f"{self.name} does {damage} {damage_type} damage!")
             target.take_damage(damage, damage_type)
         elif attack_roll >= target.AC:
             var.output.append(f"{target.name}'s AC is {target.AC}, so {self.name} hits {target.name}!")
-            damage, damage_type = self.calculate_damage()
+            damage, damage_type = self.calculate_damage(self.weapon)
+            var.output.append(f"{self.name} does {damage} {damage_type} damage!")
+            target.take_damage(damage, damage_type)
+        else:
+            var.output.append(f"{self.name} misses {target.name}, and does no damage.")
+
+    def make_off_hand_attack(self, target):
+        var.output.append(f"{self.name} makes a bonus action attack against {target.name} with their {self.off_hand}.")
+        attack_roll = self.make_attack_roll()
+        damage = 0
+        damage_type = None
+        if attack_roll == "Crit Fail":
+            var.output.append(f"{self.name} rolls a 1 on their attack roll, critically failing the attack, "
+                              f"and doing no damage!")
+            return
+        elif attack_roll == "Crit":
+            damage, damage_type = self.calculate_damage(self.off_hand_weapon, crit=True, bonus=False)
+            var.output.append(f"{self.name} does {damage} {damage_type} damage!")
+            target.take_damage(damage, damage_type)
+        elif attack_roll >= target.AC:
+            var.output.append(f"{target.name}'s AC is {target.AC}, so {self.name} hits {target.name}!")
+            damage, damage_type = self.calculate_damage(self.off_hand_weapon, bonus=False)
             var.output.append(f"{self.name} does {damage} {damage_type} damage!")
             target.take_damage(damage, damage_type)
         else:
@@ -208,12 +233,18 @@ class Fighter(Character):
                           f"for a total of {attack_roll}.")
         return attack_roll
 
-    def calculate_damage(self, crit=False):
-        rolls = self.weapon.roll_damage(crit)
-        damage = sum(rolls) + self.damage_bonus
-        var.output.append(f"{self.name} rolls [{[x for x in rolls]} + {self.damage_bonus}], "
-                          f"for a total of {damage} {self.weapon.damage_type} damage.")
-        return damage, self.weapon.damage_type
+    def calculate_damage(self, weapon, crit=False, bonus=True):
+        rolls = weapon.roll_damage(crit)
+        damage = sum(rolls)
+        if bonus:
+            damage += self.damage_bonus
+            var.output.append(f"{self.name} rolls [{[x for x in rolls]} + {self.damage_bonus}], "
+                            f"for a total of {damage} {weapon.damage_type} damage.")
+        else:
+            var.output.append(f"{self.name} rolls [{[x for x in rolls]}], "
+                              f"for a total of {damage} {weapon.damage_type} damage.")
+        return damage, weapon.damage_type
+
 
     def take_damage(self, damage, damage_type):
         if damage_type in self.invulnerabilities:
