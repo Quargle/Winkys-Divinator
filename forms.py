@@ -67,7 +67,18 @@ class CharacterForm(FlaskForm):
         "Unarmed Strike",
         ],
         default="Longsword")
-    off_hand = SelectField("Other Hand", choices=["None", "Shield"])
+    off_hand = SelectField("Other Hand", choices=[
+        "None",
+        "Shield",
+        "Club",
+        "Dagger",
+        "Handaxe",
+        "Light Hammer",
+        "Sickle",
+        "Scimitar",
+        "Shortsword",
+        ],
+        default="None",)
     armor = SelectField("Armor", choices=[
         "No Armor",
         "Padded",

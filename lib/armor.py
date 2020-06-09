@@ -22,7 +22,7 @@ armor_dict = {
     "No Armor": Armor("Unarmored", 10, "Light"),
     "Padded": Armor("Padded", 11, "Light"),
     "Leather": Armor("Leather", 11, "Light"),
-    "Studded_Leather": Armor("Studded Leather", 12, "Light"),
+    "Studded Leather": Armor("Studded Leather", 12, "Light"),
     "Hide": Armor("Hide", 12, "Medium"),
     "Chain Shirt": Armor("Chain Shirt", 13, "Medium"),
     "Scale Mail": Armor("Scale Mail", 14, "Medium"),

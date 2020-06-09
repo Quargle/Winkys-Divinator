@@ -20,23 +20,18 @@ from . import armor, weapons, var
 class Creature:
     def __init__(self, **kwargs):
         self.name = kwargs['name']
-        self.str = getattr(kwargs, 'str', 16)
-        self.dex = getattr(kwargs, 'dex', 16)
-        self.con = getattr(kwargs, 'con', 16)
+        self.str = int(kwargs['str'])
+        self.dex = int(kwargs['dex'])
+        self.con = int(kwargs['con'])
         self.str_mod = self.set_ability_modifier(self.str)
         self.dex_mod = self.set_ability_modifier(self.dex)
         self.con_mod = self.set_ability_modifier(self.con)
-        self.max_HP = self.set_max_HP()
-        self.HP = self.max_HP
         self.features = []
 
     @staticmethod
     def set_ability_modifier(ability_score):
         ability_mod = (ability_score - 10)//2
         return ability_mod
-
-    def set_max_HP(self):
-        raise NotImplementedError("This method should always exist in the subclass.")
 
     def reset(self):
         self.HP = self.max_HP
@@ -53,24 +48,24 @@ class Creature:
 
 class Character(Creature):
     def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.level = int(kwargs['level'])
         self.race = kwargs['race']
+        self.max_HP = self.set_max_HP()
+        self.HP = self.max_HP
         self.proficiency_bonus = self.set_proficiency_bonus()
-        super().__init__(**kwargs)
+        self.proficiencies = []
         self.armor = armor.armor_dict[kwargs['armor']]
         self.weapon = weapons.weapon_dict[kwargs['weapon']]
         self.off_hand = kwargs['off_hand']
         if self.off_hand in var.weapons:
             self.off_hand_weapon = weapons.weapon_dict[self.off_hand]
         self.AC = self.set_AC()
-        self.proficiency_bonus = self.set_proficiency_bonus()
-        self.attack_bonus = self.set_attack_bonus()
-        self.damage_bonus = self.set_damage_bonus()
         self.attacks = 1
         self.invulnerabilities = []
         self.resistances = []
         self.vulnerabilities = []
-        self.uses = {}
+        self.feature_uses = {}
         self.add_racial_features()
 
     def set_max_HP(self):
@@ -116,7 +111,7 @@ class Character(Creature):
     def add_racial_features(self):
         if self.race == "Half-Orc":
             self.features.append("Relentless Endurance")
-            self.uses['Relentless Endurance'] = 1
+            self.feature_uses['Relentless Endurance'] = 1
             self.features.append("Savage Attacks")
         if self.race == "High Elf":
             for weapon in ["Shortsword", "Longsword", "Shortbow", "longbow"]:
@@ -131,11 +126,11 @@ class Character(Creature):
 
 class Fighter(Character):
     def __init__(self, **kwargs):
-        self.proficiencies = []
-        self.add_weapon_proficiencies()
         super().__init__(**kwargs)
-        self.fighting_style = "Duellist"
         self.add_weapon_proficiencies()
+        self.fighting_style = "Duellist"
+        self.attack_bonus = self.set_attack_bonus()
+        self.damage_bonus = self.set_damage_bonus()
 
     def set_max_HP(self):
         return 10 + self.con_mod + ((4 + self.con_mod) * (self.level - 1))
@@ -155,6 +150,7 @@ class Fighter(Character):
                     Armor: {self.armor.name}
                     AC: {self.AC}
                     Weapon: {self.weapon.name}  
+                    Off-hand: {self.off_hand}
                 """
     # TODO: Add fighting styles
 
@@ -163,11 +159,11 @@ class Fighter(Character):
     def take_turn(self, target):
         var.output.append(f"{self.name} takes their turn...")
         self.make_attack_action(target)
-        if (self.off_hand in var.weapons) and (target.HP < 0):
+        if (self.off_hand in var.weapons) and (target.HP > 0):
             self.make_off_hand_attack(target)
         var.output.append(f"End of {self.name}'s turn:")
-        var.output.append(f"{self.name}: {self.HP}HP")
-        var.output.append(f"{target.name}: {target.HP}HP")
+        var.output.append(f"{self.name}: {self.HP} HP")
+        var.output.append(f"{target.name}: {target.HP} HP")
         var.output.append("")
 
     def make_attack_action(self, target):
@@ -230,12 +226,12 @@ class Fighter(Character):
         return attack_roll
 
     def calculate_damage(self, weapon, crit=False, bonus=True):
-        rolls = weapon.roll_damage(crit)
+        rolls = weapon.roll_damage(crit, wielder=self)
         damage = sum(rolls)
         if bonus:
             damage += self.damage_bonus
             var.output.append(f"{self.name} rolls [{[x for x in rolls]} + {self.damage_bonus}], "
-                            f"for a total of {damage} {weapon.damage_type} damage.")
+                              f"for a total of {damage} {weapon.damage_type} damage.")
         else:
             var.output.append(f"{self.name} rolls [{[x for x in rolls]}], "
                               f"for a total of {damage} {weapon.damage_type} damage.")
@@ -250,15 +246,15 @@ class Fighter(Character):
             damage *= 2
         if self.HP > damage:
             self.HP -= damage
-            var.output.append(f"{self.name} takes {damage} {damage_type} damage, and has {self.HP}HP remaining!")
+            var.output.append(f"{self.name} takes {damage} {damage_type} damage, and has {self.HP} HP remaining!")
         else:
             damage = self.HP
-            var.output.append(f"{self.name} takes {damage} {damage_type} damage, and is reduced to 0HP!")
+            var.output.append(f"{self.name} takes {damage} {damage_type} damage, and is reduced to 0 HP!")
             self.HP = 0
-            if ("Relentless Endurance" in self.features) and (self.uses['Relentless Endurance'] > 0):
-                self.uses['Relentless Endurance'] -= 1
+            if ("Relentless Endurance" in self.features) and (self.feature_uses['Relentless Endurance'] > 0):
+                self.feature_uses['Relentless Endurance'] -= 1
                 self.HP = 1
-                var.output.append(f"{self.name} uses their Relentless Endurance, and regains 1HP!")
+                var.output.append(f"{self.name} uses their Relentless Endurance, and regains 1 HP!")
             else:
                 var.output.append(f"{self.name} dies!")
 
@@ -269,7 +265,7 @@ class Barbarian(Character):
         super().__init__(**kwargs)
         self.max_HP = 12 + self.con_mod + ((4 + self.con_mod) * (self.level - 1))
         self.features.append("Rage")
-        self.uses['Rage'] = 2
+        self.feature_uses['Rage'] = 2
         self.features.append("Unarmored Defense")
         if self.level >= 2:
             self.features.append("Reckless Attack")

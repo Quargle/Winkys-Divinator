@@ -16,11 +16,13 @@ class Weapon:
     def describe(self):
         print("Name: {}  Damage: {}  Properties: ".format(self.name, self.damage, self.properties))
 
-    def roll_damage(self, crit=False):
+    def roll_damage(self, wielder, crit=False):
         rolls = []
         dice = self.damage_dice
         if crit:
             dice *= 2
+            if "Savage Attacks" in wielder.features:
+                dice += 1
         for _ in range(dice):
             rolls.append(randint(1, self.damage_die))
         return rolls

@@ -20,6 +20,9 @@ def create_duellist(char):
             level=char.level.data,
             race=char.race.data,
             weapon=char.weapon.data,
+            str=char.str.data,
+            dex=char.dex.data,
+            con=char.con.data,
             off_hand=char.off_hand.data,
             armor=char.armor.data,
         )
@@ -71,7 +74,6 @@ def main(form):
     fight(char1, char2)
     print(char1.__repr__())
     print(char2.__repr__())
-    print(char1.__class__.__name__)
     return char1, char2
 
 
